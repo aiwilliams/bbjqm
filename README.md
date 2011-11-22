@@ -1,8 +1,13 @@
-Sample Backbone Application Using jQuery Mobile (jQM)
+Backbone Application Using jQuery Mobile (jQM)
 =====================================================
 
-This project shows how to create a Backbone JavaScript application with jQuery
-Mobile.
+This project explores how to create a Backbone JavaScript application with
+jQuery Mobile. Backbone is the central technology, with jQM taking a back seat
+as an implementation detail of having decent cross-platform mobile views. From
+one perspective, this seems like a Good Thing, since jQuery is a DOM
+manipulation tool, not an application framework, and jQM [comes from that mold]
+[3]. In fact, are not [all features] [2] but one about UI issues?
+
 
 There are two conventional [ways to implement/layout jQM projects] [1]:
 
@@ -25,5 +30,6 @@ Introducing Backbone presents some challenges:
 
   * How does this jive with jQM's 'widget' stuff?
 
-
 [1]: http://jquerymobile.com/demos/1.0/docs/pages/page-anatomy.html "jQuery Mobile Page Anatomy"
+[2]: http://jquerymobile.com/demos/1.0/docs/about/features.html "jQuery Mobile Features"
+[3]: http://jquerymobile.com/demos/1.0/docs/about/intro.html "jQuery Mobile Overview"
