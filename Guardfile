@@ -1,6 +1,6 @@
 guard 'coffeescript',
   input:'app',
-  output:'public/mobile/javascripts'
+  output:'public/javascripts'
 
 guard 'compass' do
   watch(/^app\/sass\/(.*)\.s[ac]ss/)
