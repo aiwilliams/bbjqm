@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prefetch Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.js"></script>
+  </head>
+  <body>
+    <div data-role="content">
+      <p>This sample shows that "data-prefetch" will not allow us to obtain all
+      Pages while online such that the application could work in an offline
+      mode.</p>
+      <p>Since we are using AJAX Single Page loading, once we leave a Page it
+      is deleted from the DOM and forgotten altogether. This causes the Page to
+      be reloaded or prefetched again when it is linked to with
+      data-prefetch.</p>
+      <p>In fact, when you go from index to level1, and then press you're back
+      button, you will see that level1 is prefetched again!</p>
+      <p><a href="level1.html" data-prefetch="true">Prefetched Level 1</a></p>
+    </div>
+  </body>
+</html>
