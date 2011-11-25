@@ -45,16 +45,21 @@ does not provide for the fine-grained interaction needed in the Page lifecycle.
 
 There are two [conventional approaches] [1] to providing jQM Page content:
 
-  * Single Page: Links to pages cause an AJAX load of the page. There is a way
-    to prefetch a linked page.
+  1. Single Page: Links to pages cause an AJAX load of the page. There is a way
+     to prefetch a linked page.
 
-  * Multiple Page: All pages are defined in a single html document, so that
-    links to pages avoid AJAX loading of the pages.
+  2. Multiple Page: All pages are defined in a single html document, so that
+     links to pages avoid AJAX loading of the pages.
 
 A third approach jQM can support that is not conventional and the
 implementation of which is not immediately obvious:
 
-  * Pages are rendered on the fly using client-side templates.
+  3. Pages are rendered on the fly using client-side templates.
+
+You can see the first approach in the public/prefetch directory. Since I am
+pursuing an offline application, I need to use the second or third approach. It
+is not desirable to have all possible Pages in the DOM at the same time, coming
+down in a single HTML page. Therefore, we choose option three.
 
 
 How It Works
@@ -91,13 +96,6 @@ Compared to the default pattern of [observing jQM Page events] [4],
 various handler functions associated with the events, thereby filling the role
 of Backbone.Router, with the fine-grained Page event handling we need.
 
-TODO
-----
-
-I'd like to see the project include an example of each type of Page loading
-technique. Especially interesting to me is seeing how well the Single Page
-approach works with prefetching, so that the first page can be visited and the
-rest downloaded for a guaranteed functional offline experience.
 
 [1]: http://jquerymobile.com/demos/1.0/docs/pages/page-anatomy.html "jQM Page Anatomy"
 [2]: http://jquerymobile.com/demos/1.0/docs/about/features.html "jQM Features"
