@@ -1,16 +1,24 @@
-# When jQuery Mobile is ready to go, configure it to allow for Backbone. This
-# script MUST be loaded before the jquery.mobile script is loaded or these
-# configurations may not have affect. See
-# http://jquerymobile.com/demos/1.0/docs/api/globalconfig.html.
+# To configure jQuery Mobile, you must bind to mobileinit before the jQM script
+# is loaded.  See http://jquerymobile.com/demos/1.0/docs/api/globalconfig.html.
 #
 $(document).bind 'mobileinit', ->
+  # $.mobile.property = value
 
-  # DO NOT: Automatically handle clicks and form submissions through Ajax, when same-domain
-  # Our Backbone.Views will handle all view events.
-  $.mobile.ajaxEnabled = false
 
-  # DO NOT: Automatically load and show pages based on location.hash
-  # We leave this up to Backbone.Routers.
-  $.mobile.hashListeningEnabled = false
+# This code will show you the Page event lifecycle! A jQuery Mobile application
+# developer is supposed to leverage these events to update the Page contents.
+pageEvent = (event, data) ->
+  console.log [event.type, event, data]
 
-  $.mobile.linkBindingEnabled = false
+eventNames = [
+  'pagebeforechange', 'pagechange', 'pagechangefailed',
+  'pagebeforeload', 'pageload', 'pageloadfailed',
+  'pagebeforecreate', 'pagecreate', 'pageinit',
+  'pagebeforeshow', 'pageshow',
+  'pagebeforehide', 'pagehide',
+  'pageremove',
+  'updatelayout'
+]
+
+for name in eventNames
+  $(document).bind name, pageEvent

@@ -2,16 +2,17 @@ jQuery Mobile (jQM) Application Using Backbone
 ==============================================
 
 This project explores how to create a jQuery Mobile/Backbone.js JavaScript
-application that can operate in an offline mode.
+application that can operate in an offline mode. It provides value by
+documenting the what and why.
+
+Background
+----------
 
 jQM provides an implementation of decent cross-platform mobile interfaces.  As
 jQuery is a DOM manipulation tool, and not an application framework, so jQM
 seems to [conform to that mold] [3]. Therefore, we need something like
 Backbone.js to provide for the missing pieces: structure, persistence, business
 entities, view interaction processiong.
-
-Background
-----------
 
 <h4>Screen Transitions (or, Processing URL Changes)</h4>
 
@@ -25,21 +26,23 @@ UI event listeners, typically by using Backbone.View instances.
 jQM is different. It has been designed to hijack all anchors (and form buttons)
 in your DOM, such that when a click occurs, it attempts to load the 'Page' that
 contains the content to show for the href (resource). Only after a successful
-transition is the browser location updated, in order that it accurately
-reflects the Page being displayed.
-
-[The process] [5] of Page transition causes [events to fire] [4] that the
-application developer is intended to observe in order to implement custom
-behavior.
-
-Can you see how this makes integration of jQM and Backbone a challenge? Well,
-for me it was difficult, since I initially saw jQM as nothing more than a
-widget toolkit that overstepped it's bounds into routing URL changes into
-functions. Embracing jQM, listening to location changes becomes irrelevant.
-Additionally, there are implications due to how jQM manages Page unloading.
+load, create, and initialize is the browser location updated, in order that it
+accurately reflects the Page being displayed. Under this model, we not longer
+care much for location changes, but instead want only to prepare a Page before
+it is shown. [The process] [5] of Page transition causes [events to fire] [4]
+that the application developer is intended to observe in order to implement
+custom behavior.
 
 Backbone.Router is insufficient for processing these Page transitions, as it
 does not provide for the fine-grained interaction needed in the Page lifecycle.
+
+What we do need, though, is the elegance of Backbone.Router - the ability to
+connect certain Pages to custom code in an <em>organized</em> way. It can be as
+simple as a map of Page url to function, but the introduction of Page lifecycle
+events may require that we have a function for multiple phases of a single
+Page. We can use [jquery.mobile.router] [6] as a solution, though we do not use
+it in all our examples so that we can see if other, simpler patterns might
+emerge.
 
 <h4>Loading Content</h4>
 
@@ -56,45 +59,30 @@ implementation of which is not immediately obvious:
 
   3. Pages are rendered on the fly using client-side templates.
 
-You can see the first approach in the public/prefetch directory. Since I am
-pursuing an offline application, I need to use the second or third approach. It
-is not desirable to have all possible Pages in the DOM at the same time, coming
-down in a single HTML page. Therefore, we choose option three.
+Each approach has it's own merits. You should know that the Single Page style
+is the most degradable and only one that seems to work with all platforms
+supported by jQM. The third style is not easily implemented, and is of
+questionable value in jQM.
 
+See public/single/index.html, public/multiple/index.html.
 
-How It Works
-------------
+<h4>Making Views Respond to Model Changes</h4>
 
 In Backbone, we are accustomed to using the location change events in order to
-render a template and update the DOM, usually by way of a Backbone.Router and
-Backbone.View.
+render a template, update the DOM, and bind a Backbone.View to it's 'el'ement,
+usually by way of a Backbone.Router.
 
 Instead, with jQuery Mobile, anchors are hijacked in order to:
 
  1. Load the page referenced by the href
- 2. Change (transition) from the active page to the loaded page
+ 2. Prepare the content
  3. Update the browser location to reflect the new page
+ 4. Transition from the active page to the loaded page
+ 5. Dispose of the previously active page
 
 When this process occurs, events are [fired at various points] [4]. What we
-need, considering an application that uses the third approach described above,
-is an opportunity to:
-
- 1. 'Load the page' using client-side templates, which we'd render in our
-    Backbone.View
- 2. Bind our Backbone.View events to the created Node
-
-To accomplish 1, we need to handle the 'pagebeforeload' event and
-preventDefault behavior. When 2 should occur has not become clear to me, but I
-suspect that when we use a Backbone.View to create our Page, we don't need
-another event. Of course, should we decide to use one of the two conventional
-approaches to load a Page (Single Page or Multiple Page), we would want an
-opportunity to bind our Backbone.View to the created DOM node, and therefore
-would use 'pagebeforeshow' or possibly even 'pageshow'.
-
-Compared to the default pattern of [observing jQM Page events] [4],
-[jquery.mobile.router] [6] allows for a cleaner approach to managing the
-various handler functions associated with the events, thereby filling the role
-of Backbone.Router, with the fine-grained Page event handling we need.
+need is an opportunity to bind our Backbone.Views to the created elements.  We
+will use 'pagebeforeshow'.
 
 
 [1]: http://jquerymobile.com/demos/1.0/docs/pages/page-anatomy.html "jQM Page Anatomy"
