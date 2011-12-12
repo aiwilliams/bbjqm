@@ -1,10 +1,17 @@
 (function() {
   var eventNames, name, pageEvent, _i, _len;
 
-  $(document).bind('mobileinit', function() {});
+  $(document).bind('mobileinit', function() {
+    $("#welcome").live('pagecreate', function(event, data) {
+      return console.log('pagecreate for welcome %o %o', event, data);
+    });
+    return $.mobile.jqmRouter = {
+      ajaxApp: true
+    };
+  });
 
   pageEvent = function(event, data) {
-    return console.log([event.type, event, data]);
+    return console.log('%s %o %o', event.type, event, data);
   };
 
   eventNames = ['pagebeforechange', 'pagechange', 'pagechangefailed', 'pagebeforeload', 'pageload', 'pageloadfailed', 'pagebeforecreate', 'pagecreate', 'pageinit', 'pagebeforeshow', 'pageshow', 'pagebeforehide', 'pagehide', 'pageremove', 'updatelayout'];

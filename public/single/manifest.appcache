@@ -1,7 +1,25 @@
 CACHE MANIFEST
+
+# Version: Must be updated if any resource paths have content that changes.
+# This isn't necessary if all of your urls include version numbers or some
+# other name that changes based on content.
+#
+# version 1
+
+CACHE:
 index.html
 welcome.html
 ../javascripts/mobileinit.js
 ../javascripts/jquery-1.6.4.js
+../javascripts/jquery.mobile.router-0.6.js
 ../javascripts/jquery.mobile-1.0.js
-../stylesheets/jquery.mobile-1.0.css
+../stylesheets/jquery.mobile/1.0.css
+../stylesheets/jquery.mobile/images/ajax-loader.png
+
+NETWORK:
+# These URLs should not be cached. We'd like this behavior with our API calls.
+# Store data with localStorage, making API calls if possible when the
+# localStorage needs update. NOTE that this example app does not actually make
+# these API calls. They are here for example only. Please read
+# http://appcachefacts.info/ and the resources it references.
+/api/v1/*

@@ -3,15 +3,19 @@
   <head>
     <title>Backbone Using jQuery Mobile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../stylesheets/jquery.mobile-1.0.css" />
+    <link rel="stylesheet" href="../stylesheets/jquery.mobile/1.0.css" />
     <script type="text/javascript" src="../javascripts/jquery-1.6.4.js"></script>
     <script type="text/javascript" src="../javascripts/mobileinit.js"></script>
+    <script type="text/javascript" src="../javascripts/jquery.mobile.router-0.6.js"></script>
     <script type="text/javascript" src="../javascripts/jquery.mobile-1.0.js"></script>
   </head>
   <body>
     <div data-role="content">
       <p>This is the first page of a conventional Single Page application.</p>
-      <a href="welcome.html">Welcome</a>
+      <p>The example uses the <a href="http://appcachefacts.info/">HTML5 Appcache</a> in order to show how we can build an offline application.</p>
+      <p><a href="welcome.html">Welcome</a> without search (query) parameter.</p>
+      <p><a href="welcome.html#?v=1">Welcome</a> with v=1.</p>
+      <p><a href="welcome.html#?v=2">Welcome</a> with v=2.</p>
     </div>
   </body>
 </html>

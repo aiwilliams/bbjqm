@@ -2,13 +2,18 @@
 # is loaded.  See http://jquerymobile.com/demos/1.0/docs/api/globalconfig.html.
 #
 $(document).bind 'mobileinit', ->
-  # $.mobile.property = value
 
+  # Show how we do work on certain pages, certain events
+  $("#welcome").live 'pagecreate', (event, data) ->
+    console.log 'pagecreate for welcome %o %o', event, data
+
+  # We're not using hash routing
+  $.mobile.jqmRouter={ ajaxApp: true }
 
 # This code will show you the Page event lifecycle! A jQuery Mobile application
 # developer is supposed to leverage these events to update the Page contents.
 pageEvent = (event, data) ->
-  console.log [event.type, event, data]
+  console.log '%s %o %o', event.type, event, data
 
 eventNames = [
   'pagebeforechange', 'pagechange', 'pagechangefailed',
