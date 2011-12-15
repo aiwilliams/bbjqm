@@ -2,8 +2,8 @@
   var ControllerObject;
 
   ControllerObject = {
-    welcome: function() {
-      return console.log('heard welcome!!');
+    welcome: function(eventType, matchObj, ui, page, evt) {
+      return console.log('welcome: %o, %o, %o, %o, %o', eventType, matchObj, ui, page, evt);
     }
   };
 

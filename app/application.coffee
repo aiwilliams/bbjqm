@@ -1,6 +1,6 @@
 ControllerObject =
-  welcome: () ->
-    console.log 'heard welcome!!'
+  welcome: (eventType, matchObj, ui, page, evt) ->
+    console.log 'welcome: %o, %o, %o, %o, %o', eventType, matchObj, ui, page, evt
 
 new $.mobile.Router [
   { "welcome.html(?:[?](.*))?": { events: "i", handler: "welcome" } }

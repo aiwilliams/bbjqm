@@ -1,5 +1,11 @@
-/* jQueryMobile-router v0.6
- * Copyright 2011, Andrea Zicchetti
+/*
+ * jQueryMobile-router v0.6
+ * http://github.com/azicchetti/jquerymobile-router
+ *
+ * Copyright 2011 (c) Andrea Zicchetti
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://github.com/azicchetti/jquerymobile-router/blob/master/MIT-LICENSE.txt
+ * http://github.com/azicchetti/jquerymobile-router/blob/master/GPL-LICENSE.txt
  */
 (function($){
 
@@ -220,7 +226,7 @@ $(document).bind("mobileinit",function(){
 						handleFn=_self.userHandlers[handler];
 					}
 					if (handleFn){
-						try { handleFn(e.type,res,ui,page); bHandled = true;
+						try { handleFn(e.type,res,ui,page,e); bHandled = true;
 						}catch(err){ debug(err); }
 					}
 				}
@@ -229,7 +235,7 @@ $(document).bind("mobileinit",function(){
 			if (!bHandled && this.conf.defaultHandler && this.defaultHandlerEvents[e.type]) {
 				if (typeof(this.conf.defaultHandler) == "function") {
 					try {
-						this.conf.defaultHandler(e.type, ui, page);
+						this.conf.defaultHandler(e.type, ui, page, e);
 					} catch(err) { debug(err); }
 				}
 			}
