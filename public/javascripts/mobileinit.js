@@ -9,6 +9,14 @@
 
   $.ajaxPrefilter(ajaxCacheResponseFilter);
 
+  $(window.applicationCache).bind('error', function() {
+    return $.mobile.ajaxEnabled = false;
+  });
+
+  $(document).bind('mobileinit', function() {
+    return $.mobile.ajaxEnabled = false;
+  });
+
   $(document).bind('mobileinit', function() {
     $("#welcome").live('pagecreate', function(event, data) {
       return console.log('pagecreate for welcome %o %o', event, data);

@@ -4,7 +4,7 @@ CACHE MANIFEST
 # This isn't necessary if all of your urls include version numbers or some
 # other name that changes based on content.
 #
-# version 2
+# version 3
 
 CACHE:
 index.html

@@ -6,6 +6,16 @@ ajaxCacheResponseFilter = (options, originalOptions, jqXHR) ->
      options.isLocal = true
 $.ajaxPrefilter ajaxCacheResponseFilter
 
+# http://forum.jquery.com/topic/problem-with-linking-when-running-offline-with-application-cache-manifest#14737000002751683
+# This one doesn't help anything when we are online, yet have an up-to-date cache, as no error is occurring.
+$(window.applicationCache).bind 'error', ->
+  $.mobile.ajaxEnabled = false # Probably offline, use normal HTTP requests to get content, to fail-safe AJAX bugs when offline
+
+# Since the above does not get invoked...
+# This will turn off the ajax page transitions, and allows for query params to cached-loaded html pages on Safari.
+$(document).bind 'mobileinit', ->
+  $.mobile.ajaxEnabled = false
+
 
 # To configure jQuery Mobile, you must bind to mobileinit before the jQM script
 # is loaded.  See http://jquerymobile.com/demos/1.0/docs/api/globalconfig.html.
