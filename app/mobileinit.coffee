@@ -13,6 +13,8 @@ $(window.applicationCache).bind 'error', ->
 
 # Since the above does not get invoked...
 # This will turn off the ajax page transitions, and allows for query params to cached-loaded html pages on Safari.
+# Change this to true to get the expected screen transitions!
+# https://github.com/jquery/jquery-mobile/issues/1579#issuecomment-3166821
 $(document).bind 'mobileinit', ->
   $.mobile.ajaxEnabled = false
 
