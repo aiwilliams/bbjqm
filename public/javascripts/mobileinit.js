@@ -1,5 +1,13 @@
 (function() {
-  var eventNames, name, pageEvent, _i, _len;
+  var ajaxCacheResponseFilter, eventNames, name, pageEvent, _i, _len;
+
+  ajaxCacheResponseFilter = function(options, originalOptions, jqXHR) {
+    if (applicationCache && applicationCache.status !== applicationCache.UNCACHED && applicationCache.status !== applicationCache.OBSOLETE) {
+      return options.isLocal = true;
+    }
+  };
+
+  $.ajaxPrefilter(ajaxCacheResponseFilter);
 
   $(document).bind('mobileinit', function() {
     $("#welcome").live('pagecreate', function(event, data) {

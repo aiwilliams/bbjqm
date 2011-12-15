@@ -4,7 +4,7 @@ CACHE MANIFEST
 # This isn't necessary if all of your urls include version numbers or some
 # other name that changes based on content.
 #
-# version 1
+# version 2
 
 CACHE:
 index.html
@@ -12,6 +12,7 @@ welcome.html
 ../javascripts/mobileinit.js
 ../javascripts/jquery-1.6.4.js
 ../javascripts/jquery.mobile.router-0.6.js
+../javascripts/application.js
 ../javascripts/jquery.mobile-1.0.js
 ../stylesheets/jquery.mobile/1.0.css
 ../stylesheets/jquery.mobile/images/ajax-loader.png
